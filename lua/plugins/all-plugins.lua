@@ -1,4 +1,5 @@
 return{
+	{'ryanoasis/vim-devicons'},
 	{
 	'mhinz/vim-startify',
 	version = "*",
@@ -41,6 +42,7 @@ return{
 	{'preservim/nerdcommenter'},
 	{'arcticicestudio/nord-vim'},
 	{'tpope/vim-obsession'},
+
 	{
  	 "christoomey/vim-tmux-navigator",
  	 cmd = {
@@ -57,5 +59,14 @@ return{
   	  { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
   	  { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 	  },
-}
+	},
+
+	 {
+	 'scrooloose/nerdtree',
+	 dependencies = {"ryanoasis/vim-devicons"},
+	 },
+	 {
+	 'junegunn/fzf.vim',
+	 version = "*", 
+	 }
 }
