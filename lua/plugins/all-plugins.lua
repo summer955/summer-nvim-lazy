@@ -30,11 +30,11 @@ return{
 	},
 	{
 	'preservim/tagbar',
-	version = "*", 
+	version = "*",
 	},
 	{
 	'justinmk/vim-sneak',
-	version = "*", 
+	version = "*",
 	},
 	{
 	'mbbill/undotree',
@@ -122,7 +122,7 @@ return{
                     icons = {
                           package_installed = "✓",
                           package_uninstalled = "✗",
-                          package_pending = "⟳",
+                          package_pending = "->",
                         },
                   },
         },
@@ -137,11 +137,10 @@ return{
     },
     {
         'neovim/nvim-lspconfig',
-        -- config = function()
-        -- require('lspconfig').lua_ls.setup({})
-        -- end
+        config = function()
+        require('lspconfig').lua_ls.setup({})
+        end
     },
-
-}
+   }
 
 
