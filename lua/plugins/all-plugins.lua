@@ -1,9 +1,7 @@
 return{
-	{'ryanoasis/vim-devicons'},
 	{
 	'mhinz/vim-startify',
 	version = "*",
-	dependencies = {"ryanoasis/vim-devicons"},
 	},
 	{
 	"folke/tokyonight.nvim",
@@ -62,7 +60,7 @@ return{
 
 	 {
 	 'scrooloose/nerdtree',
-	 dependencies = {"ryanoasis/vim-devicons"},
+	 -- dependencies = {"ryanoasis/vim-devicons"},
 	 },
 	 {
 	 'junegunn/fzf',
@@ -141,6 +139,7 @@ return{
         require('lspconfig').lua_ls.setup({})
         end
     },
+    {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
    }
 
 
