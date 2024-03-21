@@ -2,6 +2,7 @@ return{
 	{
 	'mhinz/vim-startify',
 	version = "*",
+    dependencies =  "ryanoasis/vim-devicons",
 	},
 	{
 	"folke/tokyonight.nvim",
@@ -14,6 +15,7 @@ return{
 	{
 	'vim-airline/vim-airline',
 	version = "*",
+    dependencies =  "ryanoasis/vim-devicons",
 	init = function()
 		vim.g.airline_left_sep = ''
 		vim.g.airline_right_sep = ''
@@ -23,7 +25,7 @@ return{
 	'vim-airline/vim-airline-themes',
 	version = "*",
     -- init = function()
-	   --  vim.g.airline_theme='tokyonight'	
+	   --  vim.g.airline_theme='simple'
     -- end,
 	},
 	{
@@ -139,7 +141,20 @@ return{
         require('lspconfig').lua_ls.setup({})
         end
     },
-    {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+    {
+        'akinsho/bufferline.nvim',
+        version = "*",
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        config = function()
+            require("bufferline").setup{}
+        end,
+    },
+    {
+        'nvim-tree/nvim-web-devicons',
+        config = function()
+        require("nvim-web-devicons").setup{}
+        end,
+    },
    }
 
 
