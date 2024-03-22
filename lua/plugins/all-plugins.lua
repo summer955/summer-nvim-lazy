@@ -60,10 +60,15 @@ return{
 	  },
 	},
 
-	 {
-	 'scrooloose/nerdtree',
-	 -- dependencies = {"ryanoasis/vim-devicons"},
-	 },
+	 -- {
+  --   'nvim-tree/nvim-tree.lua',
+	 -- dependencies = {"nvim-tree/nvim-web-devicons"},
+  --    version = "*",
+  --    config = function()
+  --       require("nvim-tree").setup()
+  --    end,
+	 -- },
+   { 'scrooloose/nerdtree'},
 	 {
 	 'junegunn/fzf',
 	  version = "*",
@@ -130,31 +135,126 @@ return{
     {
         'williamboman/mason-lspconfig.nvim',
         config = function()
-            require("mason-lspconfig").setup {
-                    ensure_installed = { "lua_ls" },
-            }
+            require("lsp-set")
         end
     },
     {
         'neovim/nvim-lspconfig',
-        config = function()
-        require('lspconfig').lua_ls.setup({})
-        end
     },
     {
         'akinsho/bufferline.nvim',
         version = "*",
         dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
-            require("bufferline").setup{}
+            require("bufferline").setup{
+                options = {
+                    diagnostics = "nvim_lsp",
+                    offsets = {{
+                        filetype = "nerdtree",
+                        text = "File Explorer",
+                        highlight = "Directory",
+                        text_align = "left"
+                    }}
+                }
+            }
         end,
     },
     {
-        'nvim-tree/nvim-web-devicons',
+        {
+            "lukas-reineke/indent-blankline.nvim",
+            main = "ibl",
+            opts = {
+                indent = { char = "▏" },
+                  scope = { show_start = false, show_end = false },
+                  exclude = {
+                        buftypes = {
+                              "nofile",
+                              "terminal",
+                            },
+                        filetypes = {
+                              "help",
+                              "startify",
+                              "aerial",
+                              "alpha",
+                              "dashboard",
+                              "lazy",
+                              "neogitstatus",
+                              "NvimTree",
+                              "neo-tree",
+                              "Trouble",
+                            },
+                      },
+        },
+    },
+   },
+{
+        'kevinhwang91/nvim-ufo',
+        dependencies = 'kevinhwang91/promise-async',
         config = function()
-        require("nvim-web-devicons").setup{}
+            require("ufo-config")
+        end,
+        opts = {
+             preview = {
+                    mappings = {
+                          scrollB = "<C-b>",
+                          scrollF = "<C-f>",
+                          scrollU = "<C-u>",
+                          scrollD = "<C-d>",
+                        },
+        },
+    },
+ },
+{
+        'akinsho/toggleterm.nvim',
+        version = "*",
+        config = true,
+        opts = {
+              size = 10,
+              open_mapping = [[<F7>]],
+              shading_factor = 2,
+              direction = "float",
+              float_opts = {
+                    border = "curved",
+                    highlights = { border = "Normal", background = "Normal" },
+                  },
+        },
+    },
+    {
+        'rcarriga/nvim-notify',
+        opts = { stages = "fade" },
+        config = function()
+            vim.notify = require("notify")
         end,
     },
-   }
+    {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require("gitsigns-config")
+        end,
+    },
+    {
+        'SirVer/ultisnips',
+        init = function()
+        vim.g.UltiSnipsExpandTrigger = "<c-u>"
+        vim.g.UltiSnipsJumpForwardTrigger = "<c-v>"
+        vim.g.UltiSnipsJumpBackwardTrigger = "<c-b>"
+        end,
+    },
+    {'mg979/vim-visual-multi'},
+    {
+        'farmergreg/vim-lastplace',
+        init = function()
+        vim.g.lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
+        vim.g.lastplace_ignore_buftype = "quickfix,nofile,help"
+        vim.g.lastplace_open_folds = 0
+        end
+    },
+    {'tpope/vim-sleuth'},
+    {'tpope/vim-fugitive'},
+    {'luochen1990/rainbow'},
+    {'andrewradev/splitjoin.vim'},
+}
+
+
 
 

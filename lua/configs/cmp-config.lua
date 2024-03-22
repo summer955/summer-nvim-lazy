@@ -20,6 +20,7 @@ cmp.setup({
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
+            vim.fn["UltiSnips#Anon"](args.body)
         end,
     },
 
@@ -82,6 +83,7 @@ cmp.setup({
         sources = cmp.config.sources {
           { name = "nvim_lsp", priority = 1000 },
           { name = "luasnip", priority = 750 },
+          { name = 'ultisnips', priority = 700 },
           { name = "buffer", priority = 500 },
           { name = "path", priority = 250 },
         },
