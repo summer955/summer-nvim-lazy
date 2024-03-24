@@ -13,14 +13,12 @@ vim.api.nvim_set_keymap("n", "<F5>", ":UndotreeToggle<CR>", { noremap = true })
 --filestree
 vim.api.nvim_set_keymap("n", "<leader>t", ":NERDTreeToggle<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>T", ":NERDTreeFind<CR>", { noremap = true })
---fzf
-vim.api.nvim_set_keymap("n", "<C-p>", ":Files<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "B<C-s>", ":Buffers<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "R<C-s>", ":Rg<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "G<C-s>", ":GFiles?<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "T<C-s>", ":Tags<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "L<C-s>", ":Lines<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "M<C-s>", ":Map<CR>", { noremap = true })
+-- telescope
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 --trouble
 vim.keymap.set("n", "<leader>xx", function()
 	require("trouble").toggle()

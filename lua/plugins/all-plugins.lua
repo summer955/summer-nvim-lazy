@@ -66,18 +66,6 @@ return {
 		"scrooloose/nerdtree",
 		dependencies = { "ryanoasis/vim-devicons" },
 	},
-	{
-		"junegunn/fzf",
-		version = "*",
-	},
-	{
-		"junegunn/fzf.vim",
-		version = "*",
-		dependencies = { "junegunn/fzf" },
-		config = function()
-			require("fzf-config")
-		end,
-	},
 	{ "tpope/vim-surround" },
 	{
 		"windwp/nvim-autopairs",
@@ -302,4 +290,13 @@ return {
 		end,
 	},
 	{ "kevinhwang91/nvim-bqf" },
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 700
+			require("which-key").setup({})
+		end,
+	},
 }
