@@ -33,8 +33,11 @@ return {
 		version = "*",
 	},
 	{
-		"justinmk/vim-sneak",
-		version = "*",
+		"ggandor/leap.nvim",
+		name = "leap",
+		config = function()
+			require("leap").add_default_mappings()
+		end,
 	},
 	{
 		"mbbill/undotree",
@@ -100,7 +103,10 @@ return {
 		"p00f/nvim-ts-rainbow",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 	},
-	{ "JoosepAlviste/nvim-ts-context-commentstring" },
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		event = "BufRead",
+	},
 	{
 		"numToStr/Comment.nvim",
 		opts = function()
@@ -289,14 +295,45 @@ return {
 			)
 		end,
 	},
-	{ "kevinhwang91/nvim-bqf" },
+	{
+		"kevinhwang91/nvim-bqf",
+		config = function()
+			require("bqf-config")
+		end,
+	},
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		init = function()
 			vim.o.timeout = true
-			vim.o.timeoutlen = 700
+			vim.o.timeoutlen = 300
 			require("which-key").setup({})
 		end,
 	},
+	{
+		"nacro90/numb.nvim",
+		event = "BufRead",
+		config = function()
+			require("numb").setup({
+				show_numbers = true, -- Enable 'number' for the window while peeking
+				show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+			})
+		end,
+	},
+	{
+		"nvim-pack/nvim-spectre",
+		event = "BufRead",
+		config = function()
+			require("spectre").setup()
+		end,
+		lazy = true,
+	},
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "BufRead",
+		config = function()
+			require("lsp_signature").on_attach()
+		end,
+	},
+	{ "sindrets/diffview.nvim" },
 }
