@@ -171,10 +171,32 @@ function ToggleIdentBlankLine()
 		vim.g.indent_blankline_enabled = 0
 		print("Indent-Blankline diabled")
 	else
-		require("ibl").setup({ enabled = true })
+		require("ibl").setup({
+			enabled = true,
+			indent = { char = "¦" },
+			scope = { show_start = false, show_end = false },
+			exclude = {
+				buftypes = {
+					"nofile",
+					"terminal",
+				},
+				filetypes = {
+					"help",
+					"startify",
+					"aerial",
+					"alpha",
+					"dashboard",
+					"lazy",
+					"neogitstatus",
+					"NvimTree",
+					"neo-tree",
+					"Trouble",
+				},
+			},
+		})
 		vim.g.indent_blankline_enabled = 1
 		print("Indent-Blankline enabled")
 	end
 end
-vim.g.indent_blankline_enabled = 0
+vim.g.indent_blankline_enabled = 1
 vim.cmd("command! ToggleIdentBlankLine lua ToggleIdentBlankLine()")

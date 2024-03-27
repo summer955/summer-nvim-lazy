@@ -146,7 +146,19 @@ return {
 		end,
 	},
 	{
+		"mfussenegger/nvim-dap",
+		"jay-babu/mason-nvim-dap.nvim",
+		config = function()
+			require("dap-set")
+		end,
+	},
+	{
 		"neovim/nvim-lspconfig",
+		event = "InsertEnter",
+	},
+	{
+		"nvim-web-devicons",
+		event = "BufRead",
 	},
 	{
 		"akinsho/bufferline.nvim",
@@ -175,7 +187,7 @@ return {
 			event = "BufRead",
 			main = "ibl",
 			opts = {
-				indent = { char = "▏" },
+				indent = { char = "¦" },
 				scope = { show_start = false, show_end = false },
 				exclude = {
 					buftypes = {
@@ -248,6 +260,7 @@ return {
 	},
 	{
 		"SirVer/ultisnips",
+		event = "BufRead",
 		init = function()
 			vim.g.UltiSnipsExpandTrigger = "<c-u>"
 			vim.g.UltiSnipsJumpForwardTrigger = "<c-v>"
@@ -340,7 +353,7 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-bqf",
-		event = "VeryLazy",
+		event = "BufRead",
 		config = function()
 			require("bqf-config")
 		end,
