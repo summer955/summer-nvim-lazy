@@ -1,6 +1,7 @@
 return {
 	{
 		"stevearc/dressing.nvim",
+		event = "BufRead",
 		opts = {
 			input = {
 				default_prompt = "➤ ",

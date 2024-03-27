@@ -7,3 +7,6 @@ require("lazy-config")
 require("mapping")
 --support python
 -- vim.g.python3_host_prog = "/usr/bin/python3"
+
+--Add my function
+require("cmdfunction")

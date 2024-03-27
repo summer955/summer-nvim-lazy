@@ -9,7 +9,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd([[colorscheme tokyonight]])
+			vim.cmd([[colorscheme tokyonight-moon]])
 		end,
 	},
 	{
@@ -17,30 +17,34 @@ return {
 		version = "*",
 		dependencies = "ryanoasis/vim-devicons",
 		init = function()
-			vim.g.airline_left_sep = ""
-			vim.g.airline_right_sep = ""
+			-- vim.g.airline_left_sep = ""
+			-- vim.g.airline_right_sep = ""
+			vim.g.airline_powerline_fonts = 1
 		end,
 	},
 	{
 		"vim-airline/vim-airline-themes",
 		version = "*",
-		-- init = function()
-		-- 	vim.g.airline_theme = "nord"
-		-- end,
+		init = function()
+			vim.g.airline_theme = "kolor"
+		end,
 	},
 	{
 		"preservim/tagbar",
 		version = "*",
+		event = "BufRead",
 	},
 	{
 		"ggandor/leap.nvim",
 		name = "leap",
+		event = "BufRead",
 		config = function()
 			require("leap").add_default_mappings()
 		end,
 	},
 	{
 		"mbbill/undotree",
+		event = "BufRead",
 	},
 	{ "arcticicestudio/nord-vim" },
 	{ "tpope/vim-obsession" },
@@ -68,8 +72,12 @@ return {
 	{
 		"scrooloose/nerdtree",
 		dependencies = { "ryanoasis/vim-devicons" },
+		cmd = "NERDTreeToggle",
 	},
-	{ "tpope/vim-surround" },
+	{
+		"tpope/vim-surround",
+		event = "VeryLazy",
+	},
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -95,6 +103,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		version = "*",
+		event = "BufRead",
 		config = function()
 			require("treesitter-config")
 		end,
@@ -102,6 +111,7 @@ return {
 	{
 		"p00f/nvim-ts-rainbow",
 		dependencies = "nvim-treesitter/nvim-treesitter",
+		event = "BufRead",
 	},
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
@@ -109,11 +119,12 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
+		event = "BufRead",
 		opts = function()
 			return { pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook() }
 		end,
 	},
-	{ "folke/neodev.nvim", opts = { stages = "fade" } },
+	{ "folke/neodev.nvim", opts = { stages = "fade" }, event = "InsertEnter" },
 	--LSP Plugins
 	{
 		"williamboman/mason.nvim",
@@ -129,6 +140,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		event = "BufRead",
 		config = function()
 			require("lsp-set")
 		end,
@@ -140,6 +152,7 @@ return {
 		"akinsho/bufferline.nvim",
 		version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
+		event = "BufRead",
 		config = function()
 			require("bufferline").setup({
 				options = {
@@ -159,6 +172,7 @@ return {
 	{
 		{
 			"lukas-reineke/indent-blankline.nvim",
+			event = "BufRead",
 			main = "ibl",
 			opts = {
 				indent = { char = "▏" },
@@ -187,6 +201,7 @@ return {
 	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = "kevinhwang91/promise-async",
+		event = "BufRead",
 		config = function()
 			require("ufo-config")
 		end,
@@ -205,6 +220,7 @@ return {
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		config = true,
+		keys = "<F7>",
 		opts = {
 			size = 10,
 			open_mapping = [[<F7>]],
@@ -216,15 +232,16 @@ return {
 			},
 		},
 	},
-	{
-		"rcarriga/nvim-notify",
-		opts = { stages = "fade" },
-		config = function()
-			vim.notify = require("notify")
-		end,
-	},
+	-- {
+	-- 	"rcarriga/nvim-notify",
+	-- 	opts = { stages = "fade" },
+	-- 	config = function()
+	-- 		vim.notify = require("notify")
+	-- 	end,
+	-- },
 	{
 		"lewis6991/gitsigns.nvim",
+		event = "BufRead",
 		config = function()
 			require("gitsigns-config")
 		end,
@@ -237,30 +254,54 @@ return {
 			vim.g.UltiSnipsJumpBackwardTrigger = "<c-b>"
 		end,
 	},
-	{ "mg979/vim-visual-multi" },
+	{
+		"mg979/vim-visual-multi",
+		event = "InsertEnter",
+	},
 	{
 		"farmergreg/vim-lastplace",
+		event = "BufRead",
 		init = function()
 			vim.g.lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
 			vim.g.lastplace_ignore_buftype = "quickfix,nofile,help"
 			vim.g.lastplace_open_folds = 0
 		end,
 	},
-	{ "tpope/vim-sleuth" },
-	{ "tpope/vim-fugitive" },
-	{ "andrewradev/splitjoin.vim" },
+	{
+		"tpope/vim-sleuth",
+		event = "InsertEnter",
+	},
+	{
+		"tpope/vim-fugitive",
+		event = "BufRead",
+	},
+	{
+		"andrewradev/splitjoin.vim",
+		event = "InsertEnter",
+	},
 	{
 		"junegunn/vim-easy-align",
+		event = "BufRead",
 		init = function()
 			vim.api.nvim_set_keymap("x", "ga", "<Plug>(EasyAlign)", {})
 			vim.api.nvim_set_keymap("n", "ga", "<Plug>(EasyAlign)", {})
 		end,
 	},
-	{ "tpope/vim-abolish" },
-	{ "tpope/vim-unimpaired" },
-	{ "gennaro-tedesco/nvim-peekup" },
+	{
+		"tpope/vim-abolish",
+		event = "BufRead",
+	},
+	{
+		"tpope/vim-unimpaired",
+		event = "BufRead",
+	},
+	{
+		"gennaro-tedesco/nvim-peekup",
+		event = "BufRead",
+	},
 	{
 		"fedepujol/move.nvim",
+		event = "BufRead",
 		config = function()
 			require("move").setup({
 				line = {
@@ -282,10 +323,12 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
+		event = "BufRead",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
 		"tpope/vim-repeat",
+		event = "BufRead",
 		init = function()
 			vim.api.nvim_command(
 				string.format(
@@ -297,6 +340,7 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-bqf",
+		event = "VeryLazy",
 		config = function()
 			require("bqf-config")
 		end,
@@ -335,5 +379,8 @@ return {
 			require("lsp_signature").on_attach()
 		end,
 	},
-	{ "sindrets/diffview.nvim" },
+	{
+		"sindrets/diffview.nvim",
+		event = "BufRead",
+	},
 }

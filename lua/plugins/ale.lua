@@ -1,5 +1,6 @@
 return {
 	"dense-analysis/ale",
+	event = "BufRead",
 	config = function()
 		local g = vim.g
 		--run linter
