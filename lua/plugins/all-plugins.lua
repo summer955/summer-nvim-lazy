@@ -357,6 +357,11 @@ return {
 			vim.o.timeoutlen = 300
 			require("which-key").setup({})
 		end,
+		opts = {
+			defaults = {
+				["<leader>d"] = { name = "+debug" },
+			},
+		},
 	},
 	{
 		"nacro90/numb.nvim",
