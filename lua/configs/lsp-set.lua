@@ -4,6 +4,8 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"clangd",
 		"pyright",
+		--please run "apt install default-jdk"
+		-- "java_language_server",
 	},
 })
 
@@ -13,7 +15,7 @@ require("mason-lspconfig").setup_handlers({
 	function(server_name)
 		require("lspconfig")[server_name].setup({})
 	end,
-
+	--lua
 	["lua_ls"] = function()
 		lspconfig.lua_ls.setup({
 			settings = {
@@ -26,6 +28,7 @@ require("mason-lspconfig").setup_handlers({
 		})
 	end,
 
+	--C and C++
 	["clangd"] = function()
 		lspconfig.clangd.setup({
 			cmd = {
@@ -37,7 +40,12 @@ require("mason-lspconfig").setup_handlers({
 			},
 		})
 	end,
+	--python
 	["pyright"] = function()
 		lspconfig.pyright.setup({})
 	end,
+	--java
+	-- ["java_language_server"] = function()
+	-- 	lspconfig.java_language_server.setup({})
+	-- end,
 })

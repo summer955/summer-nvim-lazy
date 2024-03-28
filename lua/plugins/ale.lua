@@ -1,6 +1,6 @@
 return {
 	"dense-analysis/ale",
-	event = "BufRead",
+	event = { "BufRead", "BufNewFile" },
 	config = function()
 		local g = vim.g
 		--run linter
@@ -18,7 +18,7 @@ return {
 		g.ale_echo_msg_error_str = "E"
 		g.ale_echo_msg_warning_str = "W"
 		g.ale_echo_msg_format = "[%linter%] %s [%severity%]"
-		--set linter
+		-- set linter
 		g.ale_linters = {
 			lua = { "lua_ls" },
 			-- python = { "flake8" },

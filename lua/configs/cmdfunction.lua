@@ -193,6 +193,7 @@ function ToggleIdentBlankLine()
 					"Trouble",
 				},
 			},
+			main = "ibl",
 		})
 		vim.g.indent_blankline_enabled = 1
 		print("Indent-Blankline enabled")

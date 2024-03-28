@@ -32,19 +32,19 @@ return {
 	{
 		"preservim/tagbar",
 		version = "*",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	},
 	{
 		"ggandor/leap.nvim",
 		name = "leap",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("leap").add_default_mappings()
 		end,
 	},
 	{
 		"mbbill/undotree",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	},
 	{ "arcticicestudio/nord-vim" },
 	{ "tpope/vim-obsession" },
@@ -103,7 +103,8 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		version = "*",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
+		build = ":TSUpdate",
 		config = function()
 			require("treesitter-config")
 		end,
@@ -111,15 +112,15 @@ return {
 	{
 		"p00f/nvim-ts-rainbow",
 		dependencies = "nvim-treesitter/nvim-treesitter",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	},
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	},
 	{
 		"numToStr/Comment.nvim",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		opts = function()
 			return { pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook() }
 		end,
@@ -140,16 +141,27 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("lsp-set")
 		end,
 	},
 	{
-		"mfussenegger/nvim-dap",
 		"jay-babu/mason-nvim-dap.nvim",
-		config = function()
+		dependencies = "mfussenegger/nvim-dap",
+		init = function()
 			require("dap-set")
+		end,
+	},
+	{
+		"jay-babu/mason-null-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"williamboman/mason.nvim",
+			"nvimtools/none-ls.nvim",
+		},
+		config = function()
+			require("format-set")
 		end,
 	},
 	{
@@ -158,33 +170,12 @@ return {
 	},
 	{
 		"nvim-web-devicons",
-		event = "BufRead",
-	},
-	{
-		"akinsho/bufferline.nvim",
-		version = "*",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		event = "BufRead",
-		config = function()
-			require("bufferline").setup({
-				options = {
-					diagnostics = "nvim_lsp",
-					offsets = {
-						{
-							filetype = "nerdtree",
-							text = "File Explorer",
-							highlight = "Directory",
-							text_align = "left",
-						},
-					},
-				},
-			})
-		end,
+		event = { "BufRead", "BufNewFile" },
 	},
 	{
 		{
 			"lukas-reineke/indent-blankline.nvim",
-			event = "BufRead",
+			event = { "BufRead", "BufNewFile" },
 			main = "ibl",
 			opts = {
 				indent = { char = "¦" },
@@ -213,7 +204,7 @@ return {
 	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = "kevinhwang91/promise-async",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("ufo-config")
 		end,
@@ -253,14 +244,14 @@ return {
 	-- },
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("gitsigns-config")
 		end,
 	},
 	{
 		"SirVer/ultisnips",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		init = function()
 			vim.g.UltiSnipsExpandTrigger = "<c-u>"
 			vim.g.UltiSnipsJumpForwardTrigger = "<c-v>"
@@ -273,7 +264,7 @@ return {
 	},
 	{
 		"farmergreg/vim-lastplace",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		init = function()
 			vim.g.lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
 			vim.g.lastplace_ignore_buftype = "quickfix,nofile,help"
@@ -286,7 +277,7 @@ return {
 	},
 	{
 		"tpope/vim-fugitive",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	},
 	{
 		"andrewradev/splitjoin.vim",
@@ -294,7 +285,7 @@ return {
 	},
 	{
 		"junegunn/vim-easy-align",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		init = function()
 			vim.api.nvim_set_keymap("x", "ga", "<Plug>(EasyAlign)", {})
 			vim.api.nvim_set_keymap("n", "ga", "<Plug>(EasyAlign)", {})
@@ -302,19 +293,19 @@ return {
 	},
 	{
 		"tpope/vim-abolish",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	},
 	{
 		"tpope/vim-unimpaired",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	},
 	{
 		"gennaro-tedesco/nvim-peekup",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	},
 	{
 		"fedepujol/move.nvim",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("move").setup({
 				line = {
@@ -336,12 +327,12 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
 		"tpope/vim-repeat",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		init = function()
 			vim.api.nvim_command(
 				string.format(
@@ -353,7 +344,7 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-bqf",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("bqf-config")
 		end,
@@ -369,7 +360,7 @@ return {
 	},
 	{
 		"nacro90/numb.nvim",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("numb").setup({
 				show_numbers = true, -- Enable 'number' for the window while peeking
@@ -379,7 +370,7 @@ return {
 	},
 	{
 		"nvim-pack/nvim-spectre",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("spectre").setup()
 		end,
@@ -387,13 +378,14 @@ return {
 	},
 	{
 		"ray-x/lsp_signature.nvim",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("lsp_signature").on_attach()
 		end,
 	},
 	{
 		"sindrets/diffview.nvim",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	},
+	{ "MunifTanjim/nui.nvim", lazy = true },
 }
