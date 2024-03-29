@@ -5,7 +5,7 @@ return {
 	event = { "BufRead", "BufNewFile" },
 	opts = function()
 		local actions = require("telescope.actions")
-		local builtin = require("telescope.builtin")
+		-- local builtin = require("telescope.builtin")
 		return {
 			defaults = {
 				git_worktrees = vim.g.git_worktrees,
@@ -33,11 +33,48 @@ return {
 				},
 				n = { ["q"] = actions.close },
 			},
-			vim.keymap.set("n", "<leader>ff", builtin.find_files, {}),
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {}),
-			vim.keymap.set("n", "<leader>fb", builtin.buffers, {}),
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {}),
-			vim.keymap.set("n", "<leader>fl", builtin.current_buffer_fuzzy_find, {}),
+			-- vim.keymap.set("n", "<leader>ff", builtin.find_files, {}),
+			-- vim.keymap.set("n", "<leader>fg", builtin.live_grep, {}),
+			-- vim.keymap.set("n", "<leader>fb", builtin.buffers, {}),
+			-- vim.keymap.set("n", "<leader>fh", builtin.help_tags, {}),
+			-- vim.keymap.set("n", "<leader>fl", builtin.current_buffer_fuzzy_find, {}),
 		}
 	end,
+	keys = {
+		{
+			"<leader>ff",
+			function()
+				require("telescope.builtin").find_files({})
+			end,
+			desc = "search files",
+		},
+		{
+			"<leader>fg",
+			function()
+				require("telescope.builtin").live_grep({})
+			end,
+			desc = "search contents",
+		},
+		{
+			"<leader>fb",
+			function()
+				require("telescope.builtin").buffers({})
+			end,
+			desc = "search this buffers ",
+		},
+		{
+			"<leader>fh",
+			function()
+				require("telescope.builtin").help_tags({})
+			end,
+			desc = "search tags",
+		},
+		{
+			"<leader>fl",
+			function()
+				require("telescope.builtin").current_buffer_fuzzy_find({})
+			end,
+			desc = "search context",
+		},
+	},
 }

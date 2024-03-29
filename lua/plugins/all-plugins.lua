@@ -14,17 +14,13 @@ return {
 	},
 	{
 		"vim-airline/vim-airline",
-		version = "*",
 		dependencies = "ryanoasis/vim-devicons",
 		init = function()
-			-- vim.g.airline_left_sep = ""
-			-- vim.g.airline_right_sep = ""
 			vim.g.airline_powerline_fonts = 1
 		end,
 	},
 	{
 		"vim-airline/vim-airline-themes",
-		version = "*",
 		init = function()
 			vim.g.airline_theme = "kolor"
 		end,
@@ -76,7 +72,7 @@ return {
 	},
 	{
 		"tpope/vim-surround",
-		event = "VeryLazy",
+		event = { "BufRead", "BufNewFile" },
 	},
 	{
 		"windwp/nvim-autopairs",
@@ -148,9 +144,15 @@ return {
 	},
 	{
 		"jay-babu/mason-nvim-dap.nvim",
-		dependencies = "mfussenegger/nvim-dap",
-		init = function()
-			require("dap-set")
+		dependencies = "williamboman/mason.nvim",
+		event = { "BufRead", "BufNewFile" },
+		config = function()
+			require("mason-nvim-dap").setup({
+				ensure_installed = {
+					"codelldb",
+					"python",
+				},
+			})
 		end,
 	},
 	{
@@ -295,10 +297,10 @@ return {
 		"tpope/vim-abolish",
 		event = { "BufRead", "BufNewFile" },
 	},
-	{
-		"tpope/vim-unimpaired",
-		event = { "BufRead", "BufNewFile" },
-	},
+	-- {
+	-- 	"tpope/vim-unimpaired",
+	-- 	event = { "BufRead", "BufNewFile" },
+	-- },
 	{
 		"gennaro-tedesco/nvim-peekup",
 		event = { "BufRead", "BufNewFile" },
@@ -355,13 +357,8 @@ return {
 		init = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
-			require("which-key").setup({})
+			require("whichkey-config")
 		end,
-		opts = {
-			defaults = {
-				["<leader>d"] = { name = "+debug" },
-			},
-		},
 	},
 	{
 		"nacro90/numb.nvim",
