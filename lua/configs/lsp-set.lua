@@ -4,7 +4,8 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"clangd",
 		"pyright",
-		--please run "apt install default-jdk"
+		--please run "apt install openjdk-21-jdk"
+		"jdtls",
 		-- "java_language_server",
 	},
 })
@@ -45,7 +46,7 @@ require("mason-lspconfig").setup_handlers({
 		lspconfig.pyright.setup({})
 	end,
 	--java
-	-- ["java_language_server"] = function()
-	-- 	lspconfig.java_language_server.setup({})
+	-- ["jdtls"] = function()
+	-- 	lspconfig.jdtls.setup({})
 	-- end,
 })

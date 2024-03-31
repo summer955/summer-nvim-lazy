@@ -151,6 +151,7 @@ return {
 				ensure_installed = {
 					"codelldb",
 					"python",
+					"javadbg",
 				},
 			})
 		end,
