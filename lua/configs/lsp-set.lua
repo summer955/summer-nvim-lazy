@@ -45,8 +45,8 @@ require("mason-lspconfig").setup_handlers({
 	["pyright"] = function()
 		lspconfig.pyright.setup({})
 	end,
-	--java
-	-- ["jdtls"] = function()
-	-- 	lspconfig.jdtls.setup({})
-	-- end,
+	-- java
+	["jdtls"] = function()
+		lspconfig.jdtls.setup({})
+	end,
 })

@@ -31,14 +31,6 @@ return {
 		event = { "BufRead", "BufNewFile" },
 	},
 	{
-		"ggandor/leap.nvim",
-		name = "leap",
-		event = { "BufRead", "BufNewFile" },
-		config = function()
-			require("leap").add_default_mappings()
-		end,
-	},
-	{
 		"mbbill/undotree",
 		event = { "BufRead", "BufNewFile" },
 	},
@@ -151,7 +143,7 @@ return {
 				ensure_installed = {
 					"codelldb",
 					"python",
-					"javadbg",
+					-- "javadbg",
 				},
 			})
 		end,
@@ -391,4 +383,11 @@ return {
 		event = { "BufRead", "BufNewFile" },
 	},
 	{ "MunifTanjim/nui.nvim", lazy = true },
+	{
+		"folke/twilight.nvim",
+		keys = {
+			{ "<F12>", "<Cmd>Twilight<CR>", desc = "Start distraction-free mode" },
+		},
+		opt = {},
+	},
 }
