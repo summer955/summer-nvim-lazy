@@ -1,3 +1,5 @@
+--user cmdfunction
+require("cmdfunction")
 --systemctl
 vim.o.termguicolors = true
 vim.o.tabstop = 4
@@ -63,3 +65,5 @@ vim.api.nvim_set_keymap("n", "<leader><F7>", ":ALEToggle<CR>", { noremap = true 
 vim.api.nvim_set_keymap("n", "<leader>ln", ":Linenumber<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>la", ":AddLineSymbol<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<F3>", ":ToggleIdentBlankLine<CR>", { noremap = true })
+--Session
+vim.api.nvim_set_keymap("n", "<F11>", ":SessionSave<CR>", { noremap = true })

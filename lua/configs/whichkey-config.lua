@@ -6,4 +6,5 @@ wk.register({
 	["<leader>w"] = { name = "+Move " },
 	["<leader>x"] = { name = "+Trouble " },
 	["<leader>l"] = { name = "+edit line " },
+	["<leader><leader>"] = { name = "Secondary guidance" },
 })

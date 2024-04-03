@@ -35,7 +35,7 @@ return {
 		event = { "BufRead", "BufNewFile" },
 	},
 	{ "arcticicestudio/nord-vim" },
-	{ "tpope/vim-obsession" },
+	-- { "tpope/vim-obsession" },
 
 	{
 		"christoomey/vim-tmux-navigator",
@@ -389,5 +389,10 @@ return {
 			{ "<F12>", "<Cmd>Twilight<CR>", desc = "Start distraction-free mode" },
 		},
 		opt = {},
+	},
+	{
+		"nvim-zh/colorful-winsep.nvim",
+		config = true,
+		event = { "WinNew" },
 	},
 }

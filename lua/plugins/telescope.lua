@@ -4,6 +4,7 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim" },
 	event = { "BufRead", "BufNewFile" },
 	opts = function()
+		require("telescope").load_extension("persisted")
 		local actions = require("telescope.actions")
 		-- local builtin = require("telescope.builtin")
 		return {
@@ -23,6 +24,11 @@ return {
 				width = 0.87,
 				height = 0.80,
 				preview_cutoff = 120,
+			},
+			extension = {
+				persisted = {
+					layout_config = { width = 0.55, height = 0.55 },
+				},
 			},
 			mappings = {
 				i = {
@@ -75,6 +81,12 @@ return {
 				require("telescope.builtin").current_buffer_fuzzy_find({})
 			end,
 			desc = "search context",
+		},
+		--From plgin:persisted.
+		{
+			"<leader>fs",
+			"<cmd>Telescope persisted<cr>",
+			desc = "Select Session Load",
 		},
 	},
 }
