@@ -11,10 +11,11 @@ require("bqf").setup({
 		ptogglemode = "z,",
 		stoggleup = "",
 	},
-	filter = {
-		fzf = {
-			action_for = { ["ctrl-s"] = "split" },
-			extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
-		},
-	},
+
+	-- filter = {
+	-- 	fzf = {
+	-- 		action_for = { ["ctrl-s"] = "split" },
+	-- 		extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+	-- 	},
+	-- },
 })
