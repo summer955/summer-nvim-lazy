@@ -14,7 +14,7 @@ return {
 		-- 		sidebars = "transparent",
 		-- 		floats = "transparent",
 		-- 	},
-		--},
+		-- },
 		config = function()
 			vim.cmd([[colorscheme tokyonight-moon]])
 		end,
