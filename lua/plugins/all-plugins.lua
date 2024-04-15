@@ -253,7 +253,7 @@ return {
 	},
 	{
 		"SirVer/ultisnips",
-		event = { "BufRead", "BufNewFile" },
+		event = "VeryLazy",
 		init = function()
 			vim.g.UltiSnipsExpandTrigger = "<c-u>"
 			vim.g.UltiSnipsJumpForwardTrigger = "<c-v>"

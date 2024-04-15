@@ -21,6 +21,7 @@ return {
 			"onsails/lspkind-nvim",
 			"hrsh7th/cmp-vsnip",
 			"hrsh7th/vim-vsnip",
+			"quangnguyen30192/cmp-nvim-ultisnips",
 		},
 		event = "InsertEnter",
 		config = function()
