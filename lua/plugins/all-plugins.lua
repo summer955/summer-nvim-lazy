@@ -403,4 +403,21 @@ return {
 		config = true,
 		event = { "WinNew" },
 	},
+	{
+		"echasnovski/mini.cursorword",
+		version = "*",
+		event = { "BufRead", "BufNewFile" },
+		config = function()
+			require("mini.cursorword").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.map",
+		version = false,
+		config = function()
+			require("mini.map").setup({
+				symbols = {},
+			})
+		end,
+	},
 }
