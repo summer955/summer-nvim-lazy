@@ -414,9 +414,29 @@ return {
 	{
 		"echasnovski/mini.map",
 		version = false,
+		keys = {
+			{
+				"<F10>",
+				"<cmd>:lua MiniMap.toggle()<CR>",
+				desc = "MiniMap",
+			},
+		},
 		config = function()
-			require("mini.map").setup({
-				symbols = {},
+			local map = require("mini.map")
+			map.setup({
+				integrations = {
+					map.gen_integration.builtin_search(),
+					map.gen_integration.diff(),
+					map.gen_integration.diagnostic(),
+				},
+				symbols = {
+					encode = map.gen_encode_symbols.dot("4x2"),
+					scroll_line = "▶ ",
+					scroll_view = "▐ ",
+				},
+				window = {
+					focusable = true,
+				},
 			})
 		end,
 	},
