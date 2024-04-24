@@ -77,7 +77,7 @@ return {
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = function()
-			require("nvim-autopairs").setup({})
+			require("autopairs-config")
 		end,
 		opts = {
 			check_ts = true,
